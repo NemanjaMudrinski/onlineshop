@@ -1,0 +1,110 @@
+<div class="row justify-content-end">
+        <div class="poruka alert alert-success col-lg-4 col-right" role="alert" ng-if="ap.poruka">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{ap.poruka}}</strong>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-12">Name:</label>
+                    <div class="col-sm-12">          
+                        <input type="text" class="form-control" placeholder="Name" ng-model="ap.proizvodZaIzmenu.naziv">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12">Price:</label>
+                    <div class="col-sm-12">          
+                        <input type="number" class="form-control" ng-model="ap.proizvodZaIzmenu.cena" min="1">
+                    </div>
+                </div>   
+                <div class="form-group">
+                        <label class="control-label col-sm-12">Quantity:</label>
+                        <div class="col-sm-12">          
+                            <input type="number" class="form-control" ng-model="ap.proizvodZaIzmenu.kolicina" min="1">
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12">Description:</label>
+                    <div class="col-sm-12">          
+                        <textarea class="form-control" rows="5" placeholder="Description..." ng-model="ap.proizvodZaIzmenu.opis" rows="1"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label class="control-label col-sm-8">Manufacturer:</label>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="input-group col-sm-7">
+                                <input class="form-control" type="text" 
+                                ng-model="ap.pretragaProizvodjaca" placeholder="Search Manufacturer">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-success col-sm-12" ng-click="ap.dodajProizvodjaca()">Add</button>
+                                </span>
+                            </div>
+                            <div class="col-sm-5">
+                                <select class="form-control" ng-options="proizvodjac.naziv for proizvodjac in ap.proizvodjaci 
+                                | filter:ap.pretragaProizvodjaca track by proizvodjac.id" ng-model="ap.proizvodZaIzmenu.proizvodjac"></select>
+                            </div> 
+                        </div>
+                    </div>
+                </div>    
+                <div class="form-group">
+                    <label class="control-label col-sm-8">Category:</label>
+                    <div class="col-sm-12">          
+                            <div class="row">
+                                <div class="input-group col-sm-7">
+                                    <input class="form-control" type="text" 
+                                    ng-model="ap.pretragaKategorija" placeholder="Search Category">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-success col-sm-12" ng-click="ap.dodajKategoriju()">Add</button>
+                                    </span>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" ng-options="kategorija.naziv for kategorija in ap.kategorije 
+                                    | filter:ap.pretragaKategorija track by kategorija.id" ng-model="ap.proizvodZaIzmenu.kategorija"></select>
+                                </div> 
+                            </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-8">Unit:</label>
+                    <div class="col-sm-12">          
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <select class="form-control" ng-options="merna.naziv_jedinice for merna in ap.merne 
+                                track by merna.id" ng-model="ap.proizvodZaIzmenu.merna"></select>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="btn btn-success col-sm-12" ngf-select ng-model="ap.proizvodZaIzmenu.novaSlika" 
+                                name="slika" ngf-pattern="'image/*'" ngf-accept="'image/*'">Add Photo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-sm-8">Confrime Changes:</label>
+                <div class="col-sm-12">
+                    <div class="row" ng-show="ap.izmeni">
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-success col-sm-12" ng-click="ap.izmeniProizvod()">Change</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-danger col-sm-12" ng-click="ap.odustaniOdIzmene()">Quit</button>
+                            </div>
+                        </div>
+                        <div class="row" ng-hide="ap.izmeni">
+                            <div class="col-sm-7">
+                                <button type="button" class="btn btn-success col-sm-12" ng-click="ap.dodajProizvod()">Add Product</button>
+                            </div>
+                            <div class="col-sm-5">
+                                <button type="button" class="btn btn-danger col-sm-12" ng-click="ap.odustaniOdIzmene()">Quit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
